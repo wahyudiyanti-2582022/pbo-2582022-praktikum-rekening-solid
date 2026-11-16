@@ -24,8 +24,13 @@ public class Deposito extends Rekening implements BerBunga {
         return "Deposito, bunga " + bungaPersen + "% per bulan";
     }
 
+    // Percobaan awal: tarik melempar new UnsupportedOperationException("Deposito tidak bisa ditarik").
+    // Hasil saat dijalankan:
+    // Exception in thread "main" java.lang.UnsupportedOperationException: Deposito tidak bisa ditarik
+    // Itu melanggar kontrak Rekening.tarik (tidak pernah melempar exception),
+    // jadi diperbaiki: deposito tidak bisa ditarik -> kembalikan false, saldo tidak berubah.
     @Override
     public boolean tarik(int jumlah) {
-        throw new UnsupportedOperationException("Deposito tidak bisa ditarik");
+        return false;
     }
 }
